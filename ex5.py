@@ -6,6 +6,8 @@ from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms, datasets
 import numpy as np
 
+maxprecent = 0
+max_num_of_succ = 0
 
 
 def generate_loaders(transforms, num_worker=10):
@@ -102,6 +104,8 @@ def run_the_model(model, train_loader, validation_loader, test_loader):
     global maxprecent
     global max_num_of_succ
 
+    print("start the running")
+
     validation_loss_dict = {}
     training_loss_dict = {}
     validation_acc_dict = {}
@@ -128,8 +132,8 @@ def run_the_model(model, train_loader, validation_loader, test_loader):
 
 
 def main():
-    net = ConvNet()
     train_loader, validation_loader, test_loader = generate_loaders(transforms)
+    net = ConvNet()
     run_the_model(net, train_loader, validation_loader, test_loader)
 
 
